@@ -24,6 +24,6 @@ SELECT * FROM rpc_testing.test_types(
 , a_ttime := '23:59:10'::time
 , a_ttimestamp := '12/17/1997 15:37:16.00'::timestamp
 , a_ttimestamptz := '1997-12-17 12:00 UTC'::timestamptz
-, a_aint4 := array[1,2,3]::int4[]
+, a_aint4 := array[1,2,3]::integer[]
 , a_atext := array['abc','def']::text[]
 ); -- EOT
