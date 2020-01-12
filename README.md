@@ -1,10 +1,10 @@
 # RPC testing functions
 
-This project based on [poma](https://github.com/pomasql/poma).
+This project based on [pgmig(https://github.com/pgmig/pgmig).
 
 ## Usage
 
-This code is intended to use for [apisite](https://github.com/apisite) needs.
+This code is intended to use for [procapi](https://github.com/apisite/procapi) needs.
 
 ## License
 

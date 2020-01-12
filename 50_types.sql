@@ -31,7 +31,7 @@ text[]
 -- -----------------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION test_types (
-  a_tbool bool              
+  a_tbool bool
 , a_tchar char
 , a_tdate date
 , a_tfloat4 float4
@@ -43,40 +43,41 @@ CREATE OR REPLACE FUNCTION test_types (
 , a_tinterval interval
 , a_tjson json
 , a_tjsonb jsonb
-, a_tmoney money
+--, a_tmoney money
 , a_tnumeric numeric
-, a_ttext  text 
-, a_ttime time
+, a_ttext  text
+--, a_ttime time
 , a_ttimestamp timestamp
 , a_ttimestamptz timestamptz
-, a_aint4 int4[]
+--, a_aint4 int4[]
 , a_atext text[]
 ) RETURNS TABLE(
   id int
-, tbool bool              
+, tbool bool
 , tchar char
 , tdate date
 , tfloat4 float4
 , tfloat8 float8
 , tinet inet
+
 , tint2 int2
 , tint4 int4
 , tint8 int8
 , tinterval interval
 , tjson json
 , tjsonb jsonb
-, tmoney money
+--, tmoney money
 , tnumeric numeric
 , ttext  text 
-, ttime time
+--, ttime time
 , ttimestamp timestamp
 , ttimestamptz timestamptz
-, aint4 int4[]
+--, aint4 int4[]
 , atext text[]
-) STABLE LANGUAGE 'sql' AS
+) LANGUAGE 'sql' IMMUTABLE AS
 $_$
   SELECT
-  1::int 
+  1::int
 , a_tbool
 , a_tchar
 , a_tdate
@@ -89,13 +90,13 @@ $_$
 , a_tinterval
 , a_tjson
 , a_tjsonb
-, a_tmoney
+--, a_tmoney
 , a_tnumeric
-, a_ttext 
-, a_ttime
+, a_ttext
+--, a_ttime
 , a_ttimestamp
 , a_ttimestamptz
-, a_aint4
+--, a_aint4
 , a_atext
 UNION ALL SELECT
   2::int
@@ -104,20 +105,20 @@ UNION ALL SELECT
 , '2019-03-31'::date
 , (a_tfloat4 / 3)::float4
 , (a_tfloat8 / 3)::float8
-, a_tinet
+, '1.2.3.4/8'::inet
 , (a_tint2 / 2)::int2
 , (a_tint4 / 2)::int4
 , (a_tint8 / 2)::int8
 , a_tinterval + '1 hour'::interval
 , a_tjson
 , a_tjsonb
-, a_tmoney
+--, a_tmoney
 , a_tnumeric
 , a_ttext  || a_ttext
-, '23:55:10.50'::time
+--, '23:55:10.50'::time
 , '12/17/1997 15:37:16.00'::timestamp
 , '1997-12-17 12:00 EDT'::timestamptz
-, array[9,8,7]::int4[]
+--, array[9,8,7]::int4[]
 , array['zyx1','zyx2']::text[]
 UNION ALL SELECT
   3::int
@@ -133,19 +134,20 @@ UNION ALL SELECT
 , NULL::interval
 , NULL::json
 , NULL::jsonb
-, NULL::money
+--, NULL::money
 , NULL::numeric
 , NULL::text 
-, NULL::time
+--, NULL::time
 , NULL::timestamp
 , NULL::timestamptz
-, NULL::int4[]
+--, NULL::int4[]
 , NULL::text[]
 $_$;
+
 SELECT rpc.add('test_types'
 , 'Types test'
 , '{
-	  "a_tbool": "bool"              
+	  "a_tbool": "bool"
 	, "a_tchar": "char"
 	, "a_tdate": "date"
 	, "a_tfloat4": "float4"
