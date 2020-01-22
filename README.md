@@ -10,4 +10,4 @@ This code is intended to use for [procapi](https://github.com/apisite/procapi) n
 
 The MIT License (MIT), see [LICENSE](LICENSE).
 
-Copyright (c) 2019 Aleksei Kovrizhkin <lekovr+poma@gmail.com>
+Copyright (c) 2019 Aleksei Kovrizhkin <lekovr+apisite@gmail.com>
